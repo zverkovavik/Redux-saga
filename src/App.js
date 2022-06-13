@@ -1,11 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
+import { increaseCount, decreaseCount, getNews } from './redux/actions/ActionCreator';
+import { useSelector, useDispatch } from 'react-redux';
 
 function App() {
-  let [count, setCount] = useState(0);
-  const handleIncrease = () => setCount(count += 1);
-  const handleDecrease = () => setCount(count -= 1);
+  const dispatch = useDispatch();
+  const count = useSelector(store => store?.counter?.count);
+  const handleIncrease = () => dispatch(increaseCount());
+  const handleDecrease = () => dispatch(decreaseCount());
+  const handleNewsRequest = () => dispatch(getNews());
 
   return (
     <div className="App">
@@ -20,6 +24,7 @@ function App() {
           <p>{count}</p>
           <button onClick={handleIncrease}>Increase</button>
           <button onClick={handleDecrease}>Decrease</button>
+          <button onClick={handleNewsRequest}>Get News</button>
         </section>
       </main>
     </div>
