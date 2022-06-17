@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/project/"
+    schedule:
+      # Check for updates to GitHub Actions every weekday
+      interval: "daily"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "DepUpdate"
+      include: "scope"
